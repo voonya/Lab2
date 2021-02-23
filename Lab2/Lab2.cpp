@@ -13,16 +13,15 @@ struct Team {
 };
 Team parse(string);
 void calc_points(string, vector<Team>&);
-
+void process_file(string);
 int main()
 {
-    //string directory_name;
+    string directory_name = "files";
     //cout << "Input directory name: ";
    // cin >> directory_name;
 
-    //process_file(directory_name);
-    vector<Team> teams;
-    calc_points("premier.csv", teams);
+    process_file(directory_name);
+    
 
     return 0;
 }
@@ -78,4 +77,16 @@ void calc_points(string path, vector<Team>& teams) {
 		}
 	}
 	inFile.close();
+}
+
+void process_file(string directory_name) {
+	vector<Team> teams;
+	string path = filesystem::current_path().string() + "/" + directory_name;
+	for (const auto& entry : filesystem::directory_iterator(path)) {
+		string path_file = entry.path().string();
+		string filename = path_file.substr(path_file.find("\\") + 1, path_file.length());
+		if (filename != "results.csv") {
+			calc_points(path_file, teams);
+		}
+	}
 }
