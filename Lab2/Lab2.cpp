@@ -1,6 +1,7 @@
 ﻿
-
+#include "func.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -8,7 +9,10 @@ using namespace std;
 
 int main()
 {
-
+    string directory_name;
+    cout << "Input directory name: ";
+    cin >> directory_name;
+    //process_file(directory_name);
 
 
 
