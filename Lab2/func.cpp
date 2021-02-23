@@ -65,7 +65,7 @@ void process_file(string directory_name) {
 	string path = filesystem::current_path().string() + "/" + directory_name;
 	for (const auto& entry : filesystem::directory_iterator(path)) {
 		string path_file = entry.path().string();
-		string filename = path_file.substr(path_file.find("\\") + 1, path_file.length());
+		string filename = path_file.substr(path_file.rfind(char(92)) + 1, path_file.length());
 		if (filename != "results.csv") {
 			calc_points(path_file, teams);
 		}
