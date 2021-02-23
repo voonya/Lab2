@@ -71,8 +71,6 @@ void calc_points(string path, vector<Team>& teams) {
 			string line;
 			getline(inFile, line);
 			Team current =  parse(line);
-			
-			cout << current.nametag << " " << current.points << endl;
 			teams.push_back(current);
 		}
 	}
@@ -89,4 +87,12 @@ void process_file(string directory_name) {
 			calc_points(path_file, teams);
 		}
 	}
+	for (int i = 0; i < teams.size()-1; i++) {
+		for (int j = 0; j < teams.size()-i-1; j++) {
+			if (teams[j].points < teams[j + 1].points) {
+				swap(teams[j], teams[j + 1]);
+			}
+		}
+	}
+	
 }
