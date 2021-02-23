@@ -1,17 +1,18 @@
-﻿#include "func.h"
-#include <iostream>
-#include <string>
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <filesystem>
+#include <vector>
 
 using namespace std;
 
-/*struct Team {
-	int points;
-	string nametag;
-};
+struct Team;
 Team parse(string);
 void calc_points(string, vector<Team>&);
-void process_file(string);*/
+void process_file(string);
+
+
 int main()
 {
     string directory_name = "files";
@@ -20,5 +21,3 @@ int main()
     process_file(directory_name);
     return 0;
 }
-
-
