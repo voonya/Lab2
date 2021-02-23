@@ -9,7 +9,7 @@ struct Team {
 	string nametag;
 };
 
-Team parse(string line) {
+Team parse(string line) { 
 	int points = 0;
 	string name_tag = line.substr(0, line.find(","));
 	Team current;
@@ -63,14 +63,14 @@ void calc_points(string path, vector<Team>& teams) {
 void process_file(string directory_name) {
 	vector<Team> teams;
 	string path = filesystem::current_path().string() + "/" + directory_name;
-	for (const auto& entry : filesystem::directory_iterator(path)) {
+	for (const auto& entry : filesystem::directory_iterator(path)) {		//iterating the files in directory
 		string path_file = entry.path().string();
 		string filename = path_file.substr(path_file.rfind(char(92)) + 1, path_file.length());
-		if (filename != "results.csv") {
+		if (filename != "results.csv") {       //checking not to process file results
 			calc_points(path_file, teams);
 		}
 	}
-	for (int i = 0; i < teams.size() - 1; i++) {
+	for (int i = 0; i < teams.size() - 1; i++) {   //sort vector
 		for (int j = 0; j < teams.size() - i - 1; j++) {
 			if (teams[j].points < teams[j + 1].points) {
 				swap(teams[j], teams[j + 1]);
@@ -79,7 +79,8 @@ void process_file(string directory_name) {
 	}
 	ofstream results;
 	results.open(path + "/results.csv", ios::trunc);
-	for (int i = 0; i < teams.size() - 1; i++) {
+	//write in file in csv-format
+	for (int i = 0; i < teams.size() - 1; i++) { 
 		results << teams[i].nametag << "," << teams[i].points << '\n';
 	}
 	results.close();
