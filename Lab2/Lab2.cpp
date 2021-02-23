@@ -5,13 +5,7 @@
 
 using namespace std;
 
-/*struct Team {
-	int points;
-	string nametag;
-};
-Team parse(string);
-void calc_points(string, vector<Team>&);
-void process_file(string);*/
+
 int main()
 {
     string directory_name = "files";
