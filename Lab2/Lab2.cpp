@@ -17,12 +17,9 @@ void process_file(string);
 int main()
 {
     string directory_name = "files";
-    //cout << "Input directory name: ";
-   // cin >> directory_name;
-
+    cout << "Input directory name: ";
+    cin >> directory_name;
     process_file(directory_name);
-    
-
     return 0;
 }
 
@@ -94,5 +91,10 @@ void process_file(string directory_name) {
 			}
 		}
 	}
-	
+	ofstream results;
+	results.open(path + "/results.csv", ios::trunc);
+	for (int i = 0; i < teams.size() - 1; i++) {
+		results << teams[i].nametag << "," << teams[i].points << '\n';
+	}
+	results.close();
 }
